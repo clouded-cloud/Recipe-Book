@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 *{
     margin: 0;
@@ -107,3 +108,95 @@ header{
   .footer{
     background-color: black;
   }
+=======
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    color: black;
+    overflow-x: hidden;
+}
+
+.navbar{
+    font-size: 40px;
+    text-align: center;
+    color:aliceblue;
+    background-color: black;
+    width: 100%;
+    height: 10vh;
+}
+
+.navbar a{
+  color:aliceblue;
+  text-decoration: none;
+
+}
+
+nav ul {
+  list-style: none;
+}
+
+nav ul li {
+  display: inline;
+  margin-left: 80px;
+}
+
+header{
+    background-color: white;
+}
+
+#hero-section{
+    width: 100%;
+    height: 90vh;
+    text-align: center;
+    justify-content: center;
+    text-decoration: none;
+    background-image: url("food.avif");
+    background-repeat: no-repeat, repeat;
+    background-size: cover;
+}
+
+#hero-section h1{
+    font-size: 60px;
+}
+
+.inputsection{
+    margin-top: 100px;
+    width: 40%;
+    padding: 10px;
+   text-align: center;
+}
+
+.buttonsection{
+    width: 8%;
+    padding: 5px;
+}
+
+.recipe-grid{
+   
+    width: 100%;
+    height: 100vh;
+}
+.recipe-grid h1{
+    color:blue;
+}
+.grid{
+    background-color: yellow;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.recipe-card1{
+    background-color: black;
+    color: white;
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+    transition: transform 0.3s;
+}
+>>>>>>> 9476fdfbcbe9e1d0851b960ddf0bbf5dde47e53b
