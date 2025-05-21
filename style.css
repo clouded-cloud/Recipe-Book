@@ -35,6 +35,15 @@ nav ul li {
   display: inline;
   margin-left: 80px;
 }
+ a:hover{
+    background-color: lightgrey;
+ }
+
+   a:hover {
+    transform: scale(1.05);
+  }
+
+
 
 header{
     background-color: whitesmoke;
