@@ -107,6 +107,11 @@ header{
     border-radius: 6px;
   }
 
-  .footer{
+  footer{
+    text-align: center;
+    color:whitesmoke;
+    width: 100%;
+    height: 70vh;
     background-color: black;
+    margin-bottom: 40px;
   }
