@@ -4,8 +4,8 @@ const searchBtn = document.querySelector("#searchBtn");
 const recipeViewSection = document.querySelector("#recipeViewSection");
 
 const apikey = "a7909aaf59a84f37aabdca917f8e85a2";
-const baseUrl = "https://api.spoonacular.com/recipes/complexSearch?query=pasta&number=1&apiKey=a7909aaf59a84f37aabdca917f8e85a2";
-";
+const baseUrl = "https://api.spoonacular.com/recipes/complexSearch";
+
 
 const fetchRecipes = async (inp) => {
   if (!inp) {
@@ -15,7 +15,7 @@ const fetchRecipes = async (inp) => {
   const apiUrl = `${baseUrl}?query=${encodeURIComponent(inp)}&number=10&addRecipeInformation=true&apiKey=${apikey}`;
 
   try {
-    const res = await fetch(apiUrl); // ✅ Fixed this line
+    const res = await fetch(apiUrl);
     const data = await res.json();
 
     const recipesArr = data.results.map(recipe => {
