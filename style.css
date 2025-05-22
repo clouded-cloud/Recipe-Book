@@ -64,7 +64,7 @@ header{
     font-size: 60px;
 }
 
-.inputsection{
+.search{
   background-color: whitesmoke;
     margin-top: 100px;
     width: 10%;
@@ -74,11 +74,11 @@ header{
   
 }
 
-.inputsection a{
+.search a{
   text-decoration: none;
 }
 
-.inputsection p {
+.search p {
   font-size: 1em;
   color:black;
 }

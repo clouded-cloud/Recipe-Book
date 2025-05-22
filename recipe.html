@@ -60,18 +60,20 @@ h1{
   }
 
   
-.inputsection{
+.search{
   background-color: wheat;
     margin-top: 100px;
     width: 40%;
     padding: 10px;
    text-align: center;
+   border-radius: 20px;
 }
 
-.buttonsection{
+.btn-section{
   background-color: wheat;
-    width: 8%;
-    padding: 5px;
+  width: 8%;
+  padding: 5px;
+  border-radius: 20px;
 }
 
 
@@ -115,7 +117,7 @@ img{
     </style>
     <title>Document</title>
 </head>
-<body>
+<body class="bg-blue-200">
     
 <section class="header">
 <header>
@@ -128,15 +130,14 @@ img{
     </nav>
 </header>
 <div id ="hero-section">
-    
-    <input class="inputsection" placeholder="search for recipe"></input>
-    <button class="buttonsection">enter</button>
-    <div id="recipeViewSection"></div>
+     <div class="search-section flex justify-start  "></div>
+    <input class="search  bg-white pl-3 rounded-s-full"placeholder="search for recipe"></input>
+    <button class="btn-section">enter</button>
+    <div id="recipeViewSection" class=""></div>
 </div>
 </section>
 <footer>@Copyrights 2025 </footer>
-<script src="script.js">
-   
-</script>
+ <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="script.js"></script>
 </body>
 </html>
