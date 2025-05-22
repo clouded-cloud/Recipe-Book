@@ -1,56 +1,53 @@
 
-//    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-const searchInp = document.querySelector(".search")
-const searchBtn = document.querySelector("#searchBtn")
-const recipeViewSection = document.querySelector("#recipeViewSection")
 
- const apikey = "a7909aaf59a84f37aabdca917f8e85a2";
- const baseUrl = "https://api.spoonacular.com/recipes/complexSearch";
+const searchInp = document.querySelector(".search");
+    const searchBtn = document.querySelector("#searchBtn");
+    const recipeViewSection = document.querySelector("#recipeViewSection");
 
- const fetchRecipes = async(inp,apiUrl,keyIsPresent=true,apiKey="")=>{
-     if(!inp){
-         return alert("Add an input")
-        }
-        apiUrl+=encodeURIComponent(inp)
-    try{
-        const res = keyIsPresent? await fetch(apiUrl,{
-            method: 'GET',
-            headers: { 'X-Api-Key': `${apikey}`},
-            contentType: 'application/json',
-        }): await fetch(apiUrl)
-        const fetchArr = await res.json()
-        const recipesArr = fetchArr.map(obj=>{
-            const {title,ingredients,servings,instructions} = obj;
-            const ingredientsArr = ingredients.split("|")
-            return {title, servings, ingredientsArr, instructions}
-        })
-        writeRecipeBook(recipesArr,recipeViewSection);
-    }
-    catch(err){
-        console.error(err)
-    }
-    
-}
+    const apikey = "a7909aaf59a84f37aabdca917f8e85a2";
+    const baseUrl = "https://api.spoonacular.com/recipes/complexSearch";
 
-const writeRecipeBook = (arr,section)=>{
-    section.innerHTML = arr.map(obj=>`
-        <div class="recipe-card rounded-2xl">
-            <div class="recipe-title heading">${obj.title}</div>
-            <div class="section recipe-ingredients">
-                <div class="sub-heading">Ingredients ( ~${obj.servings} )</div>
-                <ul>${obj.ingredientsArr.map(ingredient=>`<li>${ingredient}</li>`).join("")}</ul>
-            </div>
-            <div class="section recipe-instructions">
-                <div class="sub-heading">Instructions</div>
-                    <div class="instructions">${obj.instructions}</div>
-                </div>
-            <div id="saveRecipeBtn" class="btn">Save</div>
-        </div>
-        `).join("")
-    }
-    const readRecipe = (section)=>{
-        
-    }
-searchBtn.addEventListener("click",()=>{
-    fetchRecipes(searchInp.value,recipeUrl,true,apikey)
-})
+    const fetchRecipes = async (inp) => {
+      if (!inp) {
+        return alert("Add an input");
+      }
+
+      const apiUrl = `${baseUrl}?query=${encodeURIComponent(inp)}&number=10&addRecipeInformation=true&apiKey=${apikey}`;
+
+      try {
+        const res = await fetch(apiUrl);
+        const data = await res.json();
+        const recipesArr = data.results.map(recipe => {
+          const { title, extendedIngredients, servings, instructions, image } = recipe;
+          const ingredientsArr = extendedIngredients.map(ing => ing.original);
+          return { title, servings, ingredientsArr, instructions, image };
+        });
+
+        writeRecipeBook(recipesArr, recipeViewSection);
+      } catch (err) {
+        console.error(err);
+        alert("Something went wrong while fetching recipes.");
+      }
+    };
+
+    const writeRecipeBook = (recipes, container) => {
+      container.innerHTML = "";
+      recipes.forEach(({ title, servings, ingredientsArr, instructions, image }) => {
+        const recipeCard = document.createElement("div");
+        recipeCard.className = "recipe-card";
+        recipeCard.innerHTML = `
+          <h3>${title}</h3>
+          <img src="${image}" alt="${title}" />
+          <p><strong>Servings:</strong> ${servings}</p>
+          <h4>Ingredients:</h4>
+          <ul>${ingredientsArr.map(i => `<li>${i}</li>`).join("")}</ul>
+          <p><strong>Instructions:</strong> ${instructions || "No instructions provided."}</p>
+        `;
+        container.appendChild(recipeCard);
+      });
+    };
+
+    searchBtn.addEventListener("click", () => {
+      const inputValue = searchInp.value.trim();
+      fetchRecipes(inputValue);
+    });
