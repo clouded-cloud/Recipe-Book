@@ -4,7 +4,7 @@ const searchInp = document.querySelector(".search")
 const searchBtn = document.querySelector("#searchBtn")
 const recipeViewSection = document.querySelector("#recipeViewSection")
 
- const apikey = "3a0c9dbd828240b885ccb5e90826ae47";
+ const apikey = "a7909aaf59a84f37aabdca917f8e85a2";
  const baseUrl = "https://api.spoonacular.com/recipes/complexSearch";
 
  const fetchRecipes = async(inp,apiUrl,keyIsPresent=true,apiKey="")=>{
