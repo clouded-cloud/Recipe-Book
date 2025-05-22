@@ -4,7 +4,7 @@ const searchInp = document.querySelector(".search")
 const searchBtn = document.querySelector("#searchBtn")
 const recipeViewSection = document.querySelector("#recipeViewSection")
 const recipeUrl = 'https://api.api-ninjas.com/v1/recipe?query='
-const apikey = "0THc+sr6O1tHPyQ1q+dZLw==kka6LaEg9zwCRnjD"
+
  const fetchRecipes = async(inp,apiUrl,keyIsPresent=true,apiKey="")=>{
      if(!inp){
          return alert("Add an input")
