@@ -65,14 +65,15 @@ header{
 }
 
 .inputsection{
+  background-color: wheat;
     margin-top: 100px;
     width: 40%;
     padding: 10px;
    text-align: center;
-   
 }
 
 .buttonsection{
+  background-color: wheat;
     width: 8%;
     padding: 5px;
 }
