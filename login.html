@@ -57,20 +57,35 @@ h1{
    a:hover {
     transform: scale(1.05);
   }
-
-  
-.inputsection{
-  background-color: wheat;
-    margin-top: 100px;
-    width: 40%;
-    padding: 10px;
-   text-align: center;
+ 
+  form {border: 3px solid #f1f1f1;}
+ 
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 50px 8px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  border-radius: 50px;
 }
 
-.buttonsection{
-  background-color: wheat;
-    width: 8%;
-    padding: 5px;
+button {
+  background-color: #04AA6D;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+.container {
+  padding: 16px;
 }
 
 
@@ -126,12 +141,17 @@ img{
         </ul>
     </nav>
 </header>
-<div id ="hero-section">
-    <input class="username" placeholder="Enter Username"></input>
-    <input class="password" placeholder="Enter Password"></input>
-    <input class="email" placeholder="Enter Email"></input>
-    <button class="buttonsection">sign up</button>
-    <div id="recipeViewSection"></div>
+<form>
+   <div class="container">
+    <label for="uname"><b>Username</b></label>
+    <input type="text" placeholder="Enter Username" name="uname" required>
+
+    <label for="psw"><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="psw" required>
+        
+    <button type="submit">Login</button>
+   </div> 
+   </form>
 </div>
 </section>
 <footer>@Copyrights 2025 </footer>
