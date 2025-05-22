@@ -1,7 +1,7 @@
 
 //    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-const searchInp = document.querySelector(".inputsection")
-const searchBtn = document.querySelector(".buttonsection")
+const searchInp = document.querySelector(".search")
+const searchBtn = document.querySelector(".searchBtn")
 const recipeViewSection = document.querySelector("#recipeViewSection")
 const meal = "mushroom"
 const recipeUrl = 'https://api.api-ninjas.com/v1/recipe?query='
