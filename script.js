@@ -1,9 +1,8 @@
 
 //    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 const searchInp = document.querySelector(".search")
-const searchBtn = document.querySelector(".searchBtn")
+const searchBtn = document.querySelector("#searchBtn")
 const recipeViewSection = document.querySelector("#recipeViewSection")
-const meal = "mushroom"
 const recipeUrl = 'https://api.api-ninjas.com/v1/recipe?query='
 const apikey = "0THc+sr6O1tHPyQ1q+dZLw==kka6LaEg9zwCRnjD"
  const fetchRecipes = async(inp,apiUrl,keyIsPresent=true,apiKey="")=>{
@@ -21,11 +20,9 @@ const apikey = "0THc+sr6O1tHPyQ1q+dZLw==kka6LaEg9zwCRnjD"
         const recipesArr = fetchArr.map(obj=>{
             const {title,ingredients,servings,instructions} = obj;
             const ingredientsArr = ingredients.split("|")
-            const instructionsArr = instructions.split(", ")
             return {title, servings, ingredientsArr, instructions}
         })
-        console.log(recipesArr)
-        return writeRecipeBook(recipesArr,recipeViewSection);
+        writeRecipeBook(recipesArr,recipeViewSection);
     }
     catch(err){
         console.error(err)
@@ -35,17 +32,17 @@ const apikey = "0THc+sr6O1tHPyQ1q+dZLw==kka6LaEg9zwCRnjD"
 
 const writeRecipeBook = (arr,section)=>{
     section.innerHTML = arr.map(obj=>`
-        <div class=" recipe-card flex">
-            <div class="recipe-title heading text-xl">${obj.title}</div>
-            <div class="recipe-ingredients">
-                <div class="heading">Ingredients ( ~${obj.servings} )</div>
+        <div class="recipe-card rounded-2xl">
+            <div class="recipe-title heading">${obj.title}</div>
+            <div class="section recipe-ingredients">
+                <div class="sub-heading">Ingredients ( ~${obj.servings} )</div>
                 <ul>${obj.ingredientsArr.map(ingredient=>`<li>${ingredient}</li>`).join("")}</ul>
             </div>
-            <div class="recipe-instructions">
-                <div class="heading">Instructions</div>
-                    <div class="instructions overflow-y-scroll">${obj.instructions}</div>
+            <div class="section recipe-instructions">
+                <div class="sub-heading">Instructions</div>
+                    <div class="instructions">${obj.instructions}</div>
                 </div>
-            <div id="saveRecipeBtn" class="btn"> </div>
+            <div id="saveRecipeBtn" class="btn">Save</div>
         </div>
         `).join("")
     }
