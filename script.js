@@ -3,7 +3,9 @@
 const searchInp = document.querySelector(".search")
 const searchBtn = document.querySelector("#searchBtn")
 const recipeViewSection = document.querySelector("#recipeViewSection")
-const recipeUrl = 'https://api.api-ninjas.com/v1/recipe?query='
+
+ const apikey = "3a0c9dbd828240b885ccb5e90826ae47";
+ const baseUrl = "https://api.spoonacular.com/recipes/complexSearch";
 
  const fetchRecipes = async(inp,apiUrl,keyIsPresent=true,apiKey="")=>{
      if(!inp){
