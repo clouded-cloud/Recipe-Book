@@ -1,54 +1,66 @@
-
-const searchInp = document.querySelector(".search");
-const searchBtn = document.querySelector("#searchBtn");
-const recipeViewSection = document.querySelector("#recipeViewSection");
-
-const apikey = "a7909aaf59a84f37aabdca917f8e85a2";
 const baseUrl = "https://api.spoonacular.com/recipes/complexSearch";
-
+const apikey = "a7909aaf59a84f37aabdca917f8e85a2"; // Replace with your actual API key
 
 const fetchRecipes = async (inp) => {
-  if (!inp) {
-    return alert("Add an input");
-  }
+  if (!inp) return alert("Add an input");
 
-  const apiUrl = `${baseUrl}?query=${encodeURIComponent(inp)}&number=10&addRecipeInformation=true&apiKey=${apikey}`;
+  const searchUrl = `${baseUrl}?query=${encodeURIComponent(inp)}&number=5&apiKey=${apikey}`;
+  console.log("Fetching:", searchUrl);
 
   try {
-    const res = await fetch(apiUrl);
+    const res = await fetch(searchUrl);
+    if (!res.ok) throw new Error(`Search error: ${res.status}`);
+
     const data = await res.json();
+    if (!data.results || data.results.length === 0) {
+      return alert("No recipes found.");
+    }
 
-    const recipesArr = data.results.map(recipe => {
-      const { title, extendedIngredients, servings, instructions, image } = recipe;
-      const ingredientsArr = extendedIngredients.map(ing => ing.original);
-      return { title, servings, ingredientsArr, instructions, image };
-    });
+    // Fetch detailed info for each recipe
+    const recipeDetails = await Promise.all(
+      data.results.map(async (recipe) => {
+        const infoUrl = `https://api.spoonacular.com/recipes/${recipe.id}/information?apiKey=${apikey}`;
+        const res = await fetch(infoUrl);
+        if (!res.ok) throw new Error(`Detail fetch error: ${res.status}`);
+        const details = await res.json();
 
-    writeRecipeBook(recipesArr, recipeViewSection);
-  } catch (err) {
-    console.error(err);
+        const { title, extendedIngredients, servings, instructions, image } = details;
+        const ingredientsArr = extendedIngredients.map((ing) => ing.original);
+        return { title, servings, ingredientsArr, instructions, image };
+      })
+    );
+
+    renderRecipes(recipeDetails);
+
+  } catch (error) {
+    console.error("Failed to fetch recipes:", error);
     alert("Something went wrong while fetching recipes.");
   }
 };
 
-const writeRecipeBook = (recipes, container) => {
-  container.innerHTML = "";
-  recipes.forEach(({ title, servings, ingredientsArr, instructions, image }) => {
-    const recipeCard = document.createElement("div");
-    recipeCard.className = "recipe-card";
-    recipeCard.innerHTML = `
-      <h3>${title}</h3>
-      <img src="${image}" alt="${title}" />
-      <p><strong>Servings:</strong> ${servings}</p>
-      <h4>Ingredients:</h4>
-      <ul>${ingredientsArr.map(i => `<li>${i}</li>`).join("")}</ul>
-      <p><strong>Instructions:</strong> ${instructions || "No instructions provided."}</p>
+// Simple render function to show recipes in a container
+const renderRecipes = (recipes) => {
+  const container = document.getElementById("recipeContainer");
+  container.innerHTML = ""; // Clear old results
+
+  recipes.forEach(recipe => {
+    const card = document.createElement("div");
+    card.className = "recipe-card";
+    card.innerHTML = `
+      <h3>${recipe.title}</h3>
+      <img src="${recipe.image}" alt="${recipe.title}" width="200">
+      <p><strong>Servings:</strong> ${recipe.servings}</p>
+      <p><strong>Ingredients:</strong></p>
+      <ul>${recipe.ingredientsArr.map(ing => `<li>${ing}</li>`).join('')}</ul>
+      <p><strong>Instructions:</strong></p>
+      <p>${recipe.instructions || "No instructions provided."}</p>
     `;
-    container.appendChild(recipeCard);
+    container.appendChild(card);
   });
 };
 
-searchBtn.addEventListener("click", () => {
-  const inputValue = searchInp.value.trim();
-  fetchRecipes(inputValue);
+// Example search trigger (replace with your own event listener)
+document.getElementById("searchBtn").addEventListener("click", () => {
+  const input = document.getElementById("recipeInput").value.trim();
+  fetchRecipes(input);
 });
