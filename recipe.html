@@ -58,63 +58,76 @@ h1{
 
    a:hover {
     transform: scale(1.05);
-  }
+   }
 
-  
-.search{
-  background-color: wheat;
-   margin: 20px;
-    width: 40%;
-    padding: 10px;
-   text-align: center;
-   border-radius: 20px;
-}
-
-.btn-section{
-  margin:20px;
-  background-color: wheat;
-  border-radius: 20px;
-}
-
-
-
-.wrapper {
+  .search-bar {
     display: flex;
-    flex-direction: row;
-    margin-top: 30px;
-}
-.recipe p{
-    flex: 2;
-    margin-top: 50px;
-    margin-right: 60px;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 3;
-    
-    display: inline;
-}
-.side-image{
-   width: 100%;
-   background-color: whitesmoke;
-   border: none;
-   padding: 40px 80px;
-}
-
-img{
-    width: 100%;
-    height: 70vh;
-}
-
-  footer{
-    margin-top: 30px;
-    text-align: center;
-    color: black;
-    width: 100%;
-    height: 10vh;
-    background-color: whitesmoke;
-    font-size: 30px;
-    border-top: #333 solid 1px;
+    gap: 10px;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
   }
+
+  #recipeInput {
+    padding: 0.5rem;
+    font-size: 16px;
+    width: 250px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+
+  #searchBtn {
+    padding: 0.5rem 1rem;
+    font-size: 16px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  #searchBtn:hover {
+    background-color: #218838;
+  }
+
+  #recipeContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    width: 100%;
+    max-width: 1200px;
+  }
+
+  .recipe-card {
+    background-color: white;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .recipe-card img {
+    width: 100%;
+    border-radius: 6px;
+    margin-bottom: 0.5rem;
+  }
+
+  .recipe-card ul {
+    padding-left: 1.2rem;
+    margin: 0.5rem 0;
+  }
+
+  .recipe-card p {
+    margin: 0.5rem 0;
+    line-height: 1.4;
+  }
+
+  .recipe-card h3 {
+    margin-top: 0;
+    color: #444;
+  }
+</style>
+
     </style>
 
     <title>Document</title>
