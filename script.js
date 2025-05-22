@@ -4,7 +4,8 @@ const searchBtn = document.querySelector("#searchBtn");
 const recipeViewSection = document.querySelector("#recipeViewSection");
 
 const apikey = "a7909aaf59a84f37aabdca917f8e85a2";
-const baseUrl = "https://api.spoonacular.com/recipes/complexSearch";
+const baseUrl = "https://api.spoonacular.com/recipes/complexSearch?query=pasta&number=1&apiKey=a7909aaf59a84f37aabdca917f8e85a2";
+";
 
 const fetchRecipes = async (inp) => {
   if (!inp) {
