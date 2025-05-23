@@ -1,5 +1,5 @@
 const baseUrl = "https://api.spoonacular.com/recipes/complexSearch";
-const apikey = "a7909aaf59a84f37aabdca917f8e85a2";
+const apikey = "70243b99381b4c84b195e0eb140f1ffa";
 
 const fetchRecipes = async (inp) => {
   if (!inp) return alert("Add an input");
