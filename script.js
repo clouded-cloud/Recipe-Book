@@ -59,7 +59,6 @@ const renderRecipes = (recipes) => {
   });
 };
 
-// Example search trigger (replace with your own event listener)
 document.getElementById("searchBtn").addEventListener("click", () => {
   const input = document.getElementById("recipeInput").value.trim();
   fetchRecipes(input);
